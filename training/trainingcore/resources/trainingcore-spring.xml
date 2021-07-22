@@ -538,4 +538,8 @@
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
+
+	<bean id="cronJobSample" class = "de.hybris.training.core.job.CronJobSample"
+		  parent="abstractJobPerformable">
+	</bean>
 </beans>
