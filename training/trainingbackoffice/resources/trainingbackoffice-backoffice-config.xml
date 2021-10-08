@@ -13,6 +13,7 @@
         xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
         xmlns:df="http://www.hybris.com/cockpitng/component/dynamicForms">
 
+    <!-- Explorer tree -->
 
     <context merge-by="module" module="trainingbackoffice" component="explorer-tree">
         <explorer-tree:explorer-tree>
@@ -24,27 +25,63 @@
         </explorer-tree:explorer-tree>
     </context>
 
+    <context merge-by="module" module="trainingbackoffice" component="explorer-tree">
+        <explorer-tree:explorer-tree>
+            <explorer-tree:navigation-node id="hmc_type_tree_node_Vehicle_Accessories">
+                <explorer-tree:type-node code="SupportedVehicle" id="hmc_type_tree_SupportedVehicle"/>
+                <explorer-tree:type-node code="VehicleAccessoryProduct" id="hmc_type_tree_VehicleAccessoryProduct"/>
+                <explorer-tree:type-node code="VehicleAccessoryStyleVariantProduct"
+                                         id="hmc_type_tree_VehicleAccessoryStyleVariantProduct"/>
+            </explorer-tree:navigation-node>
+        </explorer-tree:explorer-tree>
+    </context>
+
+    <!-- Simple Search -->
+
     <context merge-by="type" parent="GenericItem" type="Dealer" component="simple-search">
-        <simple-search:simple-search >
+        <simple-search:simple-search>
             <simple-search:field name="dealerId"/>
         </simple-search:simple-search>
     </context>
 
     <context merge-by="type" parent="GenericItem" type="Driver" component="simple-search">
-        <simple-search:simple-search >
+        <simple-search:simple-search>
             <simple-search:field name="name"/>
             <simple-search:field name="experience"/>
         </simple-search:simple-search>
     </context>
 
     <context merge-by="type" parent="GenericItem" type="Vehicle" component="simple-search">
-        <simple-search:simple-search >
+        <simple-search:simple-search>
             <simple-search:field name="registrationNo"/>
         </simple-search:simple-search>
     </context>
 
+    <context merge-by="type" parent="GenericItem" type="SupportedVehicle" component="simple-search">
+        <simple-search:simple-search>
+            <simple-search:field name="vehicleName"/>
+            <simple-search:field name="variant"/>
+        </simple-search:simple-search>
+    </context>
+
+    <context merge-by="type" parent="GenericItem" type="VehicleAccessoryProduct" component="simple-search">
+        <simple-search:simple-search>
+            <simple-search:field name="accessoryName"/>
+            <simple-search:field name="accessoryBrandName"/>
+        </simple-search:simple-search>
+    </context>
+
+    <context merge-by="type" parent="GenericItem" type="VehicleAccessoryStyleVariantProduct" component="simple-search">
+        <simple-search:simple-search>
+            <simple-search:field name="name"/>
+            <simple-search:field name="accessoryColor"/>
+        </simple-search:simple-search>
+    </context>
+
+    <!-- Advanced Search -->
+
     <context merge-by="type" parent="GenericItem" type="Driver" component="advanced-search">
-        <advanced-search:advanced-search >
+        <advanced-search:advanced-search>
             <advanced-search:field-list>
                 <advanced-search:field name="name"
                                        selected="true" operator="equals"/>
@@ -55,16 +92,16 @@
     </context>
 
     <context merge-by="type" parent="GenericItem" type="Dealer" component="advanced-search">
-        <advanced-search:advanced-search >
+        <advanced-search:advanced-search>
             <advanced-search:field-list>
-                <advanced-search:field  name="dealerId"
+                <advanced-search:field name="dealerId"
                                        selected="true" operator="equals"/>
             </advanced-search:field-list>
         </advanced-search:advanced-search>
     </context>
 
     <context merge-by="type" parent="GenericItem" type="Vehicle" component="advanced-search">
-        <advanced-search:advanced-search >
+        <advanced-search:advanced-search>
             <advanced-search:field-list>
                 <advanced-search:field name="registrationNo"
                                        selected="true" operator="equals"/>
@@ -72,19 +109,56 @@
         </advanced-search:advanced-search>
     </context>
 
+    <context merge-by="type" parent="GenericItem" type="SupportedVehicle" component="advanced-search">
+        <advanced-search:advanced-search>
+            <advanced-search:field-list>
+                <advanced-search:field name="code"
+                                       selected="true" operator="equals"/>
+                <advanced-search:field name="vehicleName"
+                                       selected="true" operator="like"/>
+                <advanced-search:field name="variant"
+                                       selected="true" operator="like"/>
+            </advanced-search:field-list>
+        </advanced-search:advanced-search>
+    </context>
 
-   <!-- Editor Areas -->
+    <context merge-by="type" parent="GenericItem" type="VehicleAccessoryProduct" component="advanced-search">
+        <advanced-search:advanced-search>
+            <advanced-search:field-list>
+                <advanced-search:field name="code"
+                                       selected="true" operator="equals"/>
+                <advanced-search:field name="accessoryName"
+                                       selected="true" operator="like"/>
+                <advanced-search:field name="accessoryBrandName"
+                                       selected="true" operator="like"/>
+            </advanced-search:field-list>
+        </advanced-search:advanced-search>
+    </context>
+
+    <context merge-by="type" parent="GenericItem" type="VehicleAccessoryStyleVariantProduct"
+             component="advanced-search">
+        <advanced-search:advanced-search>
+            <advanced-search:field-list>
+                <advanced-search:field name="code"
+                                       selected="true" operator="equals"/>
+                <advanced-search:field name="name"
+                                       selected="true" operator="like"/>
+                <advanced-search:field name="accessoryColor"
+                                       selected="true" operator="like"/>
+            </advanced-search:field-list>
+        </advanced-search:advanced-search>
+    </context>
+
+
+    <!-- Editor Areas -->
 
     <context merge-by="type" type="Vehicle" component="editor-area">
-        <editorArea:editorArea >
+        <editorArea:editorArea>
             <editorArea:tab name="hmc.tab.vehicle.essential" position="1">
                 <editorArea:section name="hmc.section.vehicle.attributes">
-                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
-                                          qualifier="registrationNo"/>
-                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
-                                          qualifier="name"/>
-                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
-                                          qualifier="description"/>
+                    <editorArea:attribute qualifier="registrationNo"/>
+                    <editorArea:attribute qualifier="name"/>
+                    <editorArea:attribute qualifier="description"/>
                 </editorArea:section>
             </editorArea:tab>
         </editorArea:editorArea>
@@ -95,34 +169,79 @@
         <editorArea:editorArea>
             <editorArea:essentials>
                 <editorArea:essentialSection name="hmc.tab.dealer.essential">
-                    <editorArea:attribute  qualifier="dealerId" />
-                    <editorArea:attribute  qualifier="name" />
+                    <editorArea:attribute qualifier="dealerId"/>
+                    <editorArea:attribute qualifier="name"/>
                 </editorArea:essentialSection>
             </editorArea:essentials>
         </editorArea:editorArea>
     </context>
 
-    <!--<context merge-by="type" parent="GenericItem" type="Dealer" component="editor-area">
-        <editorArea:editorArea >
-            <editorArea:tab name="hmc.tab.dealer.essential" position="1">
-                <editorArea:section name="hmc.section.dealer.attributes">
-                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
-                                          qualifier="dealerId"/>
-                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
-                                          qualifier="name"/>
-                </editorArea:section>
-            </editorArea:tab>
-        </editorArea:editorArea>
-    </context>-->
-
     <context merge-by="type" type="Dealer" component="editor-area">
-        <editorArea:editorArea >
+        <editorArea:editorArea>
             <editorArea:tab name="hmc.tab.dealer.relations" position="1">
                 <editorArea:section name="hmc.section.dealer.relation.attributes">
                     <editorArea:attribute
-                                          qualifier="drivers"/>
+                            qualifier="drivers"/>
                     <editorArea:attribute
-                                          qualifier="vehicles"/>
+                            qualifier="vehicles"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" type="SupportedVehicle" component="editor-area">
+        <editorArea:editorArea>
+            <editorArea:tab name="hmc.tab.supportedVehicle.properties" position="1">
+                <editorArea:section name="hmc.section.supportedVehicle.essential">
+                    <editorArea:attribute qualifier="code"/>
+                    <editorArea:attribute qualifier="vehicleName"/>
+                    <editorArea:attribute qualifier="variant"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" type="SupportedVehicle" component="editor-area">
+        <editorArea:editorArea>
+            <editorArea:tab name="hmc.tab.supportedVehicle.relations" position="2">
+                <editorArea:section name="hmc.section.supportedVehicle.relation.list">
+                    <editorArea:attribute
+                            qualifier="vehicleAccessoryStyleVariant"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" type="VehicleAccessoryProduct" component="editor-area">
+        <editorArea:editorArea>
+            <editorArea:tab name="hmc.tab.vehicleAccessoryProduct.general" position="1">
+                <editorArea:section name="hmc.section.vehicleAccessoryProduct.general.attributes">
+                    <editorArea:attribute qualifier="code"/>
+                    <editorArea:attribute qualifier="name"/>
+                    <editorArea:attribute qualifier="accessoryBrandName"/>
+                    <editorArea:attribute qualifier="variants"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" type="VehicleAccessoryStyleVariantProduct" component="editor-area">
+        <editorArea:editorArea>
+            <editorArea:tab name="hmc.tab.vehicleAccessoryStyleVariant.general" position="1">
+                <editorArea:section name="hmc.section.vehicleAccessoryStyleVariant.general.attributes">
+                    <editorArea:attribute qualifier="code"/>
+                    <editorArea:attribute qualifier="baseProduct"/>
+                    <editorArea:attribute qualifier="accessoryColor"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" type="VehicleAccessoryStyleVariantProduct" component="editor-area">
+        <editorArea:editorArea>
+            <editorArea:tab name="hmc.tab.vehicleAccessoryStyleVariant.relations" position="2">
+                <editorArea:section name="hmc.section.vehicleAccessoryStyleVariant.relations.list">
+                    <editorArea:attribute qualifier="vehicles"/>
                 </editorArea:section>
             </editorArea:tab>
         </editorArea:editorArea>
@@ -131,7 +250,7 @@
     <!-- List Views -->
 
     <context merge-by="type" parent="GenericItem" type="Dealer" component="listview">
-        <list-view:list-view >
+        <list-view:list-view>
             <list-view:column qualifier="dealerId"/>
             <list-view:column qualifier="name"/>
             <list-view:column qualifier="address"/>
@@ -139,7 +258,7 @@
     </context>
 
     <context merge-by="type" parent="GenericItem" type="Driver" component="listview">
-        <list-view:list-view >
+        <list-view:list-view>
             <list-view:column qualifier="driverId"/>
             <list-view:column qualifier="name"/>
             <list-view:column qualifier="experience"/>
@@ -147,15 +266,46 @@
     </context>
 
     <context merge-by="type" parent="GenericItem" type="Vehicle" component="listview">
-        <list-view:list-view >
+        <list-view:list-view>
             <list-view:column qualifier="registrationNo"/>
             <list-view:column qualifier="name"/>
         </list-view:list-view>
     </context>
 
+    <context merge-by="type" parent="GenericItem" type="SupportedVehicle" component="listview">
+        <list-view:list-view>
+            <list-view:column qualifier="code"/>
+            <list-view:column qualifier="vehicleName"/>
+            <list-view:column qualifier="variant"/>
+        </list-view:list-view>
+    </context>
+
+    <context merge-by="type" parent="GenericItem" type="SupportedVehicle" component="listview">
+        <list-view:list-view>
+            <list-view:column qualifier="code"/>
+            <list-view:column qualifier="vehicleName"/>
+            <list-view:column qualifier="variant"/>
+        </list-view:list-view>
+    </context>
+
+    <context merge-by="type" parent="GenericItem" type="VehicleAccessoryProduct" component="listview">
+        <list-view:list-view>
+            <list-view:column qualifier="code"/>
+            <list-view:column qualifier="accessoryName"/>
+            <list-view:column qualifier="accessoryBrandName"/>
+        </list-view:list-view>
+    </context>
+
+    <context merge-by="type" parent="GenericItem" type="VehicleAccessoryStyleVariantProduct" component="listview">
+        <list-view:list-view>
+            <list-view:column qualifier="code"/>
+            <list-view:column qualifier="name"/>
+            <list-view:column qualifier="accessoryColor"/>
+        </list-view:list-view>
+    </context>
 
     <context merge-by="module" component="editorareaactions" type="Consignment">
-        <y:actions >
+        <y:actions>
             <y:group qualifier="common">
                 <y:label>actiongroup.common</y:label>
                 <y:action action-id="de.hybris.training.backoffice.actions.confirmpickupaction"
@@ -169,12 +319,13 @@
 
 
     <context type="Dealer" component="create-wizard">
-        <wz:flow  id="DealerWizard"
+        <wz:flow id="DealerWizard"
                  title="create.dealer.wizard.title">
             <wz:prepare id="DealerPrepare">
                 <wz:initialize property="newDealer" type="ctx.TYPE_CODE"/>
             </wz:prepare>
-            <wz:step id="step1" label="create.dealer.wizard.essential.label" sublabel="create.dealer.wizard.essential.sublabel">
+            <wz:step id="step1" label="create.dealer.wizard.essential.label"
+                     sublabel="create.dealer.wizard.essential.sublabel">
                 <wz:info id="step1.intro" label="create.dealer.wizard.essential.intro" position="top"/>
                 <wz:content id="step1.content">
                     <wz:property-list root="newDealer">
@@ -190,7 +341,8 @@
                     </wz:done>
                 </wz:navigation>
             </wz:step>
-            <wz:step id="step2" label="create.dealer.wizard.contact.label" sublabel="create.dealer.wizard.contact.sublabel">
+            <wz:step id="step2" label="create.dealer.wizard.contact.label"
+                     sublabel="create.dealer.wizard.contact.sublabel">
                 <wz:info id="step1.intro" label="create.dealer.wizard.contact.intro" position="top"/>
                 <wz:content id="step2.content">
                     <wz:property-list root="newDealer">
@@ -215,7 +367,8 @@
             <wz:prepare id="DriverPrepare">
                 <wz:initialize property="newDriver" type="ctx.TYPE_CODE"/>
             </wz:prepare>
-            <wz:step id="step1" label="create.driver.wizard.essential.label" sublabel="create.driver.wizard.essential.sublabel">
+            <wz:step id="step1" label="create.driver.wizard.essential.label"
+                     sublabel="create.driver.wizard.essential.sublabel">
                 <wz:info id="step1.intro" label="create.driver.wizard.essential.intro" position="top"/>
                 <wz:content id="step1.content">
                     <wz:property-list root="newDriver">
@@ -231,7 +384,8 @@
                     </wz:done>
                 </wz:navigation>
             </wz:step>
-            <wz:step id="step2" label="create.driver.wizard.experience.label" sublabel="create.driver.wizard.experience.sublabel">
+            <wz:step id="step2" label="create.driver.wizard.experience.label"
+                     sublabel="create.driver.wizard.experience.sublabel">
                 <wz:info id="step1.intro" label="create.dealer.wizard.experience.intro" position="top"/>
                 <wz:content id="step2.content">
                     <wz:property-list root="newDriver">
@@ -256,13 +410,14 @@
             <wz:prepare id="VehiclePrepare">
                 <wz:initialize property="newVehicle" type="ctx.TYPE_CODE"/>
             </wz:prepare>
-            <wz:step id="step1" label="create.vehicle.wizard.essential.label" sublabel="create.vehicle.wizard.essential.sublabel">
+            <wz:step id="step1" label="create.vehicle.wizard.essential.label"
+                     sublabel="create.vehicle.wizard.essential.sublabel">
                 <wz:info id="step1.intro" label="create.vehicle.wizard.essential.intro" position="top"/>
                 <wz:content id="step1.content">
                     <wz:property-list root="newVehicle">
-                        <wz:property qualifier="code" />
-                        <wz:property qualifier="catalogVersion" />
-                        <wz:property qualifier="approvalStatus" />
+                        <wz:property qualifier="code"/>
+                        <wz:property qualifier="catalogVersion"/>
+                        <wz:property qualifier="approvalStatus"/>
                         <wz:property qualifier="registrationNo" type="java.lang.Integer"/>
                     </wz:property-list>
                 </wz:content>
@@ -277,11 +432,107 @@
         </wz:flow>
     </context>
 
+
+    <context type="SupportedVehicle" component="create-wizard">
+        <wz:flow id="SupportedVehicleWizard"
+                 title="create.supportedVehicle.wizard.title">
+            <wz:prepare id="VehiclePrepare">
+                <wz:initialize property="newVehicle" type="ctx.TYPE_CODE"/>
+            </wz:prepare>
+            <wz:step id="step1" label="create.supportedVehicle.wizard.essential.label"
+                     sublabel="create.supportedVehicle.wizard.essential.sublabel">
+                <wz:info id="step1.intro" label="create.supportedVehicle.wizard.essential.intro" position="top"/>
+                <wz:content id="step1.content">
+                    <wz:property-list root="newVehicle">
+                        <wz:property qualifier="code" type="java.lang.Integer"/>
+                        <wz:property qualifier="vehicleName" type="java.lang.String"/>
+                        <wz:property qualifier="variant" type="java.lang.String"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel/>
+                    <wz:next
+                            visible="((newVehicle.code != null) and (newVehicle.vehicleName != null)) and (newVehicle.variant != null)"/>
+                    <wz:done
+                            visible="((newVehicle.code != null) and (newVehicle.vehicleName != null) and (newVehicle.variant != null))">
+                        <wz:save property="newVehicle"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+
+    <context type="VehicleAccessoryProduct" component="create-wizard">
+        <wz:flow id="AccessoryBaseProductWizard"
+                 title="create.accessoryBaseProduct.wizard.title">
+            <wz:prepare id="accessoryBaseProductPrepare">
+                <wz:initialize property="newAccessoryBaseProduct" type="ctx.TYPE_CODE"/>
+            </wz:prepare>
+            <wz:step id="step1" label="create.accessoryBaseProduct.wizard.essential.label"
+                     sublabel="create.accessoryBaseProduct.wizard.essential.sublabel">
+                <wz:info id="step1.intro" label="create.accessoryBaseProduct.wizard.essential.intro" position="top"/>
+                <wz:content id="step1.content">
+                    <wz:property-list root="newAccessoryBaseProduct">
+                        <wz:property qualifier="code" type="java.lang.String"/>
+                        <wz:property qualifier="accessoryName" type="java.lang.String"/>
+                        <wz:property qualifier="accessoryBrandName" type="java.lang.String"/>
+                        <wz:property qualifier="variants" type="java.lang.String"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel/>
+                    <wz:next
+                            visible="((newAccessoryBaseProduct.code != null)
+                                           and (newAccessoryBaseProduct.accessoryName != null)
+                                           and (newAccessoryBaseProduct.accessoryBrandName != null)
+                                           and (newAccessoryBaseProduct.variants != null))"/>
+                    <wz:done
+                            visible="((newAccessoryBaseProduct.code != null)
+                                           and (newAccessoryBaseProduct.accessoryName != null)
+                                           and (newAccessoryBaseProduct.accessoryBrandName != null)
+                                           and (newAccessoryBaseProduct.variants != null))">
+                        <wz:save property="newAccessoryBaseProduct"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+
+    <context type="VehicleAccessoryStyleVariantProduct" component="create-wizard">¸¸¸
+        <wz:flow id="AccessoryVariantWizard"
+                 title="create.accessoryVariant.wizard.title">
+            <wz:prepare id="accessoryBaseProductPrepare">
+                <wz:initialize property="newAccessoryVariant" type="ctx.TYPE_CODE"/>
+            </wz:prepare>
+            <wz:step id="step1" label="create.accessoryVariant.wizard.essential.label"
+                     sublabel="create.accessoryVariant.wizard.essential.sublabel">
+                <wz:info id="step1.intro" label="create.accessoryVariant.wizard.essential.intro" position="top"/>
+                <wz:content id="step1.content">
+                    <wz:property-list root="newAccessoryVariant">
+                        <wz:property qualifier="code" type="java.lang.String"/>
+                        <wz:property qualifier="accessoryColor" type="java.lang.String"/>
+                        <wz:property qualifier="baseProduct" type="java.lang.String"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel/>
+                    <wz:next
+                            visible="((newAccessoryVariant.code != null) and (newAccessoryVariant.accessoryColor != null)) and (newAccessoryVariant.baseProduct != null)"/>
+                    <wz:done
+                            visible="((newAccessoryVariant.code != null) and (newAccessoryVariant.accessoryColor != null) and (newAccessoryVariant.baseProduct != null))">
+                        <wz:save property="newAccessoryVariant"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+
     <!--Editor Area Dynamic Forms -->
 
     <context type="Vehicle" component="editorAreaDynamicForms" merge-by="module">
-        <df:dynamicForms >
-            <df:attribute id="vehicle.dynamic" qualifier="description" triggeredOn="name" computedValue="'The car is changes to :' + name[new java.util.Locale('en')]'"/>
+        <df:dynamicForms>
+            <df:attribute id="vehicle.dynamic" qualifier="description" triggeredOn="name"
+                          computedValue="'The car is changes to :' + name[new java.util.Locale('en')]'"/>
         </df:dynamicForms>
     </context>
 
@@ -303,6 +554,30 @@
         </y:base>
     </context>
 
+
+    <context type="SupportedVehicle" component="base" merge-by="type" parent="GenericItem">
+        <y:base>
+            <y:labels>
+                <y:label>code+ ' - ' +vehicleName</y:label>
+            </y:labels>
+        </y:base>
+    </context>
+
+    <context type="VehicleAccessoryProduct" component="base" merge-by="type" parent="GenericItem">
+        <y:base>
+            <y:labels>
+                <y:label>code+ ' - ' +accessoryName</y:label>
+            </y:labels>
+        </y:base>
+    </context>
+
+    <context type="VehicleAccessoryStyleVariantProduct" component="base" merge-by="type" parent="GenericItem">
+        <y:base>
+            <y:labels>
+                <y:label>code+ ' - ' +name</y:label>
+            </y:labels>
+        </y:base>
+    </context>
 
     <!-- Notification Area-->
     <context component="notification-area">

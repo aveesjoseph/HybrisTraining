@@ -3,17 +3,18 @@
  Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-		
-	<context:annotation-config/> 
+
+	<context:annotation-config/>
 
 	<alias alias="simpleSuggestionFacade" name="defaultSimpleSuggestionFacade"/>
-	<bean id="defaultSimpleSuggestionFacade" class="de.hybris.training.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >
+	<bean id="defaultSimpleSuggestionFacade"
+		  class="de.hybris.training.facades.suggestion.impl.DefaultSimpleSuggestionFacade">
 		<property name="simpleSuggestionService" ref="simpleSuggestionService"/>
 		<property name="userService" ref="userService"/>
 		<property name="categoryService" ref="categoryService"/>
@@ -21,7 +22,7 @@
 		<property name="productConverter" ref="carouselProductConverter"/>
 		<property name="cartService" ref="cartService"/>
 	</bean>
-	
+
 	<bean id="carouselProductConverter" parent="defaultProductConverter">
 		<property name="populators">
 			<list merge="true">
@@ -30,7 +31,7 @@
 		</property>
 	</bean>
 
-	<alias name="acceleratorVariantOptionDataConverter" alias="variantOptionDataConverter"/> 
+	<alias name="acceleratorVariantOptionDataConverter" alias="variantOptionDataConverter"/>
 	<bean id="acceleratorVariantOptionDataConverter" parent="abstractPopulatingConverter">
 		<lookup-method name="createTarget" bean="variantOptionData"/>
 		<property name="populators">
@@ -41,8 +42,9 @@
 	</bean>
 
 	<alias name="defaultAcceleratorVariantOptionDataPopulator" alias="acceleratorVariantOptionDataPopulator"/>
-	<bean id="defaultAcceleratorVariantOptionDataPopulator"  class="de.hybris.training.facades.populators.AcceleratorVariantOptionDataPopulator"
-	      parent="variantOptionDataPopulator" >
+	<bean id="defaultAcceleratorVariantOptionDataPopulator"
+		  class="de.hybris.training.facades.populators.AcceleratorVariantOptionDataPopulator"
+		  parent="variantOptionDataPopulator">
 		<property name="mediaService" ref="mediaService"/>
 		<property name="mediaContainerService" ref="mediaContainerService"/>
 		<property name="typeService" ref="typeService"/>
@@ -55,23 +57,29 @@
 	</bean>
 
 
-	<alias name="acceleratorGenderConverter" alias="genderConverter"/> 
+	<alias name="acceleratorGenderConverter" alias="genderConverter"/>
 	<bean id="acceleratorGenderConverter" parent="abstractPopulatingConverter">
 		<property name="targetClass" value="de.hybris.training.facades.product.data.GenderData"/>
-			<property name="populators">
-				<list>
-					<ref bean="genderDataPopulator"/>
-				</list>
-			</property>
+		<property name="populators">
+			<list>
+				<ref bean="genderDataPopulator"/>
+			</list>
+		</property>
 	</bean>
 
 	<alias name="defaultGenderDataPopulator" alias="genderDataPopulator"/>
-	<bean id="defaultGenderDataPopulator" class="de.hybris.training.facades.populators.GenderDataPopulator" >
+	<bean id="defaultGenderDataPopulator" class="de.hybris.training.facades.populators.GenderDataPopulator">
 		<property name="typeService" ref="typeService"/>
 	</bean>
 
-	<bean id="apparelProductPopulator" class="de.hybris.training.facades.populators.ApparelProductPopulator" >
+	<bean id="apparelProductPopulator" class="de.hybris.training.facades.populators.ApparelProductPopulator">
 		<property name="genderConverter" ref="genderConverter"/>
+	</bean>
+
+	<alias name="vehicleProductPopulator" alias="commerceSearchResultProductPopulator"/>
+	<bean id="vehicleProductPopulator"
+		  class="de.hybris.training.facades.populators.VehicleProductPopulator"
+		  parent="variantCommerceSearchResultProductPopulator">
 	</bean>
 
 	<!-- Add the apparelProductPopulator to the productConverter -->
@@ -96,7 +104,7 @@
 		</property>
 	</bean>
 
-	<alias name="acceleratorProductPrimaryImagePopulator" alias="productPrimaryImagePopulator" />
+	<alias name="acceleratorProductPrimaryImagePopulator" alias="productPrimaryImagePopulator"/>
 	<bean id="acceleratorProductPrimaryImagePopulator" parent="defaultProductPrimaryImagePopulator">
 		<property name="imageFormats">
 			<list>
@@ -108,7 +116,7 @@
 		</property>
 	</bean>
 
-	<alias name="acceleratorProductGalleryImagesPopulator" alias="productGalleryImagesPopulator" />
+	<alias name="acceleratorProductGalleryImagesPopulator" alias="productGalleryImagesPopulator"/>
 	<bean id="acceleratorProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator">
 		<property name="imageFormats">
 			<list>
@@ -120,66 +128,125 @@
 		</property>
 	</bean>
 
-	<bean id="customerEmailContext" class="de.hybris.training.facades.process.email.context.CustomerEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="customerEmailContext" class="de.hybris.training.facades.process.email.context.CustomerEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
 		<property name="customerConverter" ref="customerConverter"/>
 	</bean>
 
-	<bean id="forgottenPasswordEmailContext" class="de.hybris.training.facades.process.email.context.ForgottenPasswordEmailContext" parent="customerEmailContext" scope="prototype" >
+	<bean id="forgottenPasswordEmailContext"
+		  class="de.hybris.training.facades.process.email.context.ForgottenPasswordEmailContext"
+		  parent="customerEmailContext" scope="prototype">
 		<property name="customerConverter" ref="customerConverter"/>
 	</bean>
 
-	<bean id="orderNotificationEmailContext" class="de.hybris.training.facades.process.email.context.OrderNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="orderNotificationEmailContext"
+		  class="de.hybris.training.facades.process.email.context.OrderNotificationEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
 		<property name="orderConverter" ref="orderConverter"/>
 	</bean>
 
-	<bean id="quoteNotificationEmailContext" class="de.hybris.training.facades.process.email.context.QuoteNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="quoteNotificationEmailContext"
+		  class="de.hybris.training.facades.process.email.context.QuoteNotificationEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
 		<property name="quoteService" ref="quoteService"/>
 		<property name="quoteConverter" ref="quoteConverter"/>
 	</bean>
-	
-	<bean id="deliverySentEmailContext" class="de.hybris.training.facades.process.email.context.DeliverySentEmailContext" parent="abstractEmailContext" scope="prototype" >
-		<property name="consignmentConverter" ref="consignmentConverter"/>
-	</bean>
-	
-	<bean id="readyForPickupEmailContext" class="de.hybris.training.facades.process.email.context.ReadyForPickupEmailContext" parent="abstractEmailContext" scope="prototype" >
-		<property name="consignmentConverter" ref="consignmentConverter"/>
-	</bean>
-	
-	<bean id="orderCancelledEmailContext" class="de.hybris.training.facades.process.email.context.OrderCancelledEmailContext" parent="abstractEmailContext" scope="prototype" >
-		<property name="orderConverter" ref="orderConverter"/>
-	</bean>
-	
-	<bean id="orderRefundEmailContext" class="de.hybris.training.facades.process.email.context.OrderRefundEmailContext" parent="abstractEmailContext" scope="prototype" >
-		<property name="orderConverter" ref="orderConverter"/>
-	</bean>
-	<bean id="consignmentCollectionReminderEmailContext" class="de.hybris.training.facades.process.email.context.ConsignmentCollectionReminderEmailContext" parent="abstractEmailContext" scope="prototype">
-        <property name="consignmentConverter" ref="consignmentConverter"/>
-        <property name="formatFactory" ref="formatFactory"/>
-        <property name="customerServiceUncollectedConsignmentStrategy" ref="customerServiceUncollectedConsignmentStrategy" />
-        <property name="orderConverter" ref="orderConverter"/>
-    </bean>
 
-	<bean id="orderPartiallyModifiedEmailContext" class="de.hybris.training.facades.process.email.context.OrderPartiallyModifiedEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="deliverySentEmailContext"
+		  class="de.hybris.training.facades.process.email.context.DeliverySentEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+
+	<bean id="readyForPickupEmailContext"
+		  class="de.hybris.training.facades.process.email.context.ReadyForPickupEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+
+	<bean id="orderCancelledEmailContext"
+		  class="de.hybris.training.facades.process.email.context.OrderCancelledEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+
+	<bean id="orderRefundEmailContext" class="de.hybris.training.facades.process.email.context.OrderRefundEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+	<bean id="consignmentCollectionReminderEmailContext"
+		  class="de.hybris.training.facades.process.email.context.ConsignmentCollectionReminderEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+		<property name="formatFactory" ref="formatFactory"/>
+		<property name="customerServiceUncollectedConsignmentStrategy"
+				  ref="customerServiceUncollectedConsignmentStrategy"/>
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+
+	<bean id="orderPartiallyModifiedEmailContext"
+		  class="de.hybris.training.facades.process.email.context.OrderPartiallyModifiedEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
 		<property name="orderConverter" ref="orderConverter"/>
 		<property name="orderEntryConverter" ref="orderEntryConverter"/>
-		<property name="priceDataFactory" ref="priceDataFactory"/>		
+		<property name="priceDataFactory" ref="priceDataFactory"/>
 	</bean>
 
-	<bean id="orderPartiallyCanceledEmailContext" class="de.hybris.training.facades.process.email.context.OrderPartiallyCanceledEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	<bean id="orderPartiallyCanceledEmailContext"
+		  class="de.hybris.training.facades.process.email.context.OrderPartiallyCanceledEmailContext"
+		  parent="orderPartiallyModifiedEmailContext" scope="prototype">
 	</bean>
 
-	<bean id="orderPartiallyRefundedEmailContext" class="de.hybris.training.facades.process.email.context.OrderPartiallyRefundedEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	<bean id="orderPartiallyRefundedEmailContext"
+		  class="de.hybris.training.facades.process.email.context.OrderPartiallyRefundedEmailContext"
+		  parent="orderPartiallyModifiedEmailContext" scope="prototype">
 	</bean>
 
-	<bean id="notPickedUpConsignmentCanceledEmailContext" class="de.hybris.training.facades.process.email.context.NotPickedUpConsignmentCanceledEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="notPickedUpConsignmentCanceledEmailContext"
+		  class="de.hybris.training.facades.process.email.context.NotPickedUpConsignmentCanceledEmailContext"
+		  parent="abstractEmailContext" scope="prototype">
 		<property name="consignmentConverter" ref="consignmentConverter"/>
 		<property name="priceDataFactory" ref="priceDataFactory"/>
 	</bean>
 
-	<alias name="yacceleratorSearchPagePointOfServiceDistancePopulator" alias="searchPagePointOfServiceDistancePopulator" />
-	<bean id="yacceleratorSearchPagePointOfServiceDistancePopulator" class="de.hybris.training.facades.storefinder.populators.SearchPagePointOfServiceDistancePopulator" >
+	<alias name="yacceleratorSearchPagePointOfServiceDistancePopulator"
+		   alias="searchPagePointOfServiceDistancePopulator"/>
+	<bean id="yacceleratorSearchPagePointOfServiceDistancePopulator"
+		  class="de.hybris.training.facades.storefinder.populators.SearchPagePointOfServiceDistancePopulator">
 		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter"/>
 	</bean>
 
 	<bean id="genderData" class="de.hybris.training.facades.product.data.GenderData" scope="prototype"/>
+
+	<bean id="trainingStoreFacade" class="de.hybris.training.facades.trainingStore.impl.TrainingStoreFacadeImpl">
+		<property name="trainingStoreService" ref="trainingStoreService"/>
+		<property name="driverConverter" ref="driverConverter"/>
+		<property name="dealerConverter" ref="dealerConverter"/>
+	</bean>
+
+
+	<bean id="driverConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.training.facades.product.data.DriverData"/>
+		<property name="populators">
+			<list>
+				<ref bean="driverProductPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="driverProductPopulator" class="de.hybris.training.facades.populators.DriverProductPopulator">
+	</bean>
+
+	<bean id="dealerConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.training.facades.product.data.DealerData"/>
+		<property name="populators">
+			<list>
+				<ref bean="dealerProductPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dealerProductPopulator" class="de.hybris.training.facades.populators.DealerProductPopulator">
+	</bean>
+
 </beans>

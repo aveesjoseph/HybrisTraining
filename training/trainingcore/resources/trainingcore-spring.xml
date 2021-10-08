@@ -542,4 +542,26 @@
 	<bean id="cronJobSample" class = "de.hybris.training.core.job.CronJobSample"
 		  parent="abstractJobPerformable">
 	</bean>
+
+	<bean id="vehicleListingJobPerformable" class = "de.hybris.training.core.job.VehicleListingJobPerformable"
+		  parent="abstractJobPerformable">
+	</bean>
+
+	<bean id="dealerNameValueProvider"
+		  class="de.hybris.training.core.search.solrfacetsearch.provider.impl.DealerNameValueProvider" >
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+	<bean id="driverNameValueProvider"
+		  class="de.hybris.training.core.search.solrfacetsearch.provider.impl.DriverNameValueProvider" >
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<bean id="trainingStoreDao" class="de.hybris.training.core.dao.impl.TrainingStoreDaoImpl">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+
+	<bean id="trainingStoreService" class = "de.hybris.training.core.services.TrainingStoreServices">
+	</bean>
 </beans>

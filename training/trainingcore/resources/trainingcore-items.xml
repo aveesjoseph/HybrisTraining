@@ -64,6 +64,18 @@
             </targetElement>
         </relation>
 
+        <relation code="Vehicle2Accessories" autocreate="true" localized="false">
+            <deployment table="Vehicle2Accessories" typecode="12361"/>
+            <sourceElement qualifier="vehicles" type="SupportedVehicle" cardinality="many" ordered="false">
+                <description>Accessory Supported Vehicle</description>
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </sourceElement>
+            <targetElement qualifier="vehicleAccessoryStyleVariant" type="VehicleAccessoryStyleVariantProduct" cardinality="many" collectiontype="set">
+                <description>Vehicles</description>
+                <modifiers read="true" write="true" search="true" optional="true"/>
+            </targetElement>
+        </relation>
+
     </relations>
 
     <itemtypes>
@@ -124,6 +136,11 @@
                     </attribute>
                 </attributes>
             </itemtype>
+
+
+
+
+
         </typegroup>
 
         <typegroup name="Electronics">
@@ -206,6 +223,65 @@
                     <attribute qualifier="experience" type="java.lang.Integer" generate="true">
                         <persistence type="property"/>
                         <modifiers read="true" write="true" optional="true"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+
+        <typegroup name="VehicleAccessory">
+
+
+            <itemtype code="VehicleAccessoryProduct" extends="Product"
+                      autocreate="true" generate="true">
+                <description>Base Vehicle Accessory product extension that contains additional attributes.</description>
+                <attributes>
+                    <attribute qualifier="accessoryName" type="localized:java.lang.String" generate="true">
+                        <description>Name of the Vehicle Accessory</description>
+                        <modifiers read="true" write="true" optional="false" initial="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="accessoryBrandName" type="localized:java.lang.String" generate="true">
+                        <description>Brand name of the Vehicle Accessory</description>
+                        <modifiers read="true" write="true" optional="false" initial="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="VehicleAccessoryStyleVariantProduct" extends="VariantProduct"
+                      autocreate="true" generate="true">
+                <description>Vehicle Accessory style variant type that contains additional attribute describing variant style.
+                </description>
+                <attributes>
+                    <attribute qualifier="accessoryColor" type="localized:java.lang.String"
+                               metatype="VariantAttributeDescriptor">
+                        <description>Color of the product.</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="SupportedVehicle"
+                      autocreate="true"
+                      generate="true">
+                <description>Vehicle that supports accessories</description>
+                <deployment table="SupportedVehicle" typecode="12360"/>
+                <attributes>
+                    <attribute qualifier="code" type="java.lang.Integer" generate="true">
+                        <persistence type="property"/>
+                        <description>Unique Identifier code of the vehicle.</description>
+                        <modifiers read="true" write="true" optional="false" initial="true" unique="true"/>
+                    </attribute>
+                    <attribute qualifier="vehicleName" type="localized:java.lang.String" generate="true">
+                        <persistence type="property"/>
+                        <description>Name of the Vehicle.</description>
+                        <modifiers read="true" write="true" optional="false" initial="true"/>
+                    </attribute>
+                    <attribute qualifier="variant" type="localized:java.lang.String" generate="true">
+                        <persistence type="property"/>
+                        <description>Name of the Vehicle.</description>
+                        <modifiers read="true" write="true" optional="false" initial="true"/>
                     </attribute>
                 </attributes>
             </itemtype>

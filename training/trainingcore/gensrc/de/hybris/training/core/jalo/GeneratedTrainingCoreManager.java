@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 14-Jul-2021, 12:16:37 AM                    ---
+ * --- Generated at 08-Oct-2021, 10:07:38 AM                    ---
  * ----------------------------------------------------------------
  *  
  * Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
@@ -24,8 +24,11 @@ import de.hybris.training.core.jalo.ApparelStyleVariantProduct;
 import de.hybris.training.core.jalo.Dealer;
 import de.hybris.training.core.jalo.Driver;
 import de.hybris.training.core.jalo.ElectronicsColorVariantProduct;
+import de.hybris.training.core.jalo.SupportedVehicle;
 import de.hybris.training.core.jalo.TrainingEmployee;
 import de.hybris.training.core.jalo.Vehicle;
+import de.hybris.training.core.jalo.VehicleAccessoryProduct;
+import de.hybris.training.core.jalo.VehicleAccessoryStyleVariantProduct;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -209,6 +212,32 @@ public abstract class GeneratedTrainingCoreManager extends Extension
 		return createElectronicsColorVariantProduct( getSession().getSessionContext(), attributeValues );
 	}
 	
+	public SupportedVehicle createSupportedVehicle(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( TrainingCoreConstants.TC.SUPPORTEDVEHICLE );
+			return (SupportedVehicle)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating SupportedVehicle : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public SupportedVehicle createSupportedVehicle(final Map attributeValues)
+	{
+		return createSupportedVehicle( getSession().getSessionContext(), attributeValues );
+	}
+	
 	public TrainingEmployee createTrainingEmployee(final SessionContext ctx, final Map attributeValues)
 	{
 		try
@@ -259,6 +288,58 @@ public abstract class GeneratedTrainingCoreManager extends Extension
 	public Vehicle createVehicle(final Map attributeValues)
 	{
 		return createVehicle( getSession().getSessionContext(), attributeValues );
+	}
+	
+	public VehicleAccessoryProduct createVehicleAccessoryProduct(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( TrainingCoreConstants.TC.VEHICLEACCESSORYPRODUCT );
+			return (VehicleAccessoryProduct)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating VehicleAccessoryProduct : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public VehicleAccessoryProduct createVehicleAccessoryProduct(final Map attributeValues)
+	{
+		return createVehicleAccessoryProduct( getSession().getSessionContext(), attributeValues );
+	}
+	
+	public VehicleAccessoryStyleVariantProduct createVehicleAccessoryStyleVariantProduct(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( TrainingCoreConstants.TC.VEHICLEACCESSORYSTYLEVARIANTPRODUCT );
+			return (VehicleAccessoryStyleVariantProduct)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating VehicleAccessoryStyleVariantProduct : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public VehicleAccessoryStyleVariantProduct createVehicleAccessoryStyleVariantProduct(final Map attributeValues)
+	{
+		return createVehicleAccessoryStyleVariantProduct( getSession().getSessionContext(), attributeValues );
 	}
 	
 	@Override

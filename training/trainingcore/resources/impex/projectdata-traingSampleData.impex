@@ -1,3 +1,8 @@
+$productCatalog=apparelProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$baseProduct=baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']),version[default='Staged']))
+$approved=approvalstatus(code)[default='approved']
+
 
 INSERT_UPDATE Driver; driverId[unique=true,allownull=false];name;experience
                     ;1;Steve;5
@@ -15,17 +20,49 @@ UPDATE Driver ; driverId[unique=true,allownull=false];dealers(dealerId)
               ;2;102
               ;3;103
 
-$productCatalog=apparelProductCatalog
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-
-$approved=approvalstatus(code)[default='approved']
 
 INSERT_UPDATE Vehicle;code[unique=true];$catalogVersion;$approved;registrationNo[unique=true]
                      ;32001;;;870001
                      ;32002;;;770001
                      ;32003;;;670001
 
-UPDATE Vehicle ; registrationNo[unique=true,allownull=false];dealers(dealerId);drivers(driverId)
-              ;870001;101;1
-              ;770001;102;2
-              ;670001;103;3
+UPDATE Vehicle ; registrationNo[unique=true,allownull=false];name;dealers(dealerId);drivers(driverId)
+              ;870001;Nissan;101;1
+              ;770001;Toyota;102;2
+              ;670001;Hundai;103;3
+
+
+
+
+INSERT_UPDATE SupportedVehicle;code[unique=true];vehicleName;variant
+                              ;100000;Ford Figo;Petrol
+                              ;100001;Ford Figo ;Diesel
+                              ;200001;Hyundai I10;Petrol
+                              ;200002;Hyundai I10;Diesel
+                              ;300001;Maruti Swift;Petrol
+                              ;300002;Maruti Swift;Diesel
+                              ;400001;Swift Dzire;Petrol
+                              ;400002;Swift Dzire;Diesel
+                              ;500001;Polo;Petrol
+                              ;500002;Polo;Diesel
+
+INSERT_UPDATE VehicleAccessoryProduct; code[unique=true];name;accessoryName;accessoryBrandName;varianttype(code);$catalogVersion;$approved
+                                     ;100;Steering wheel Cover;Steering wheel Cover;Michelin;VehicleAccessoryStyleVariantProduct;;
+                                     ;200;Car Cover;Car Cover;Car Mate;VehicleAccessoryStyleVariantProduct;;
+                                     ;300;Foot Mat;Foot Mat;Auto Zing;VehicleAccessoryStyleVariantProduct;;
+                                     ;400;Mobile Phone holder;Mobile Phone holder;Skyvik;VehicleAccessoryStyleVariantProduct;;
+
+
+INSERT_UPDATE VehicleAccessoryStyleVariantProduct;code[unique=true];name;$catalogVersion;$baseProduct;accessoryColor;$approved
+                                                 ;101;Steering wheel Cover - Red;;100;Red;
+                                                 ;201;Car Cover - Blue;;200;Blue;
+                                                 ;301;Foot Mat - Black;;300;Black;
+                                                 ;401;Mobile Phone holder - White;;400;White;
+
+
+INSERT_UPDATE VehicleAccessoryStyleVariantProduct;code[unique=true];vehicles(code)
+                                          ;101;100000
+                                          ;101;100001
+                                          ;301;400001
+                                          ;201;500002
+                                          ;401;300001

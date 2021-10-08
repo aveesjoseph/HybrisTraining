@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 14-Jul-2021, 12:16:37 AM                    ---
+ * --- Generated at 08-Oct-2021, 10:07:38 AM                    ---
  * ----------------------------------------------------------------
  *  
  * Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
@@ -24,9 +24,12 @@ public class GeneratedTrainingCoreConstants
 		public static final String DEALER = "Dealer".intern();
 		public static final String DRIVER = "Driver".intern();
 		public static final String ELECTRONICSCOLORVARIANTPRODUCT = "ElectronicsColorVariantProduct".intern();
+		public static final String SUPPORTEDVEHICLE = "SupportedVehicle".intern();
 		public static final String SWATCHCOLORENUM = "SwatchColorEnum".intern();
 		public static final String TRAININGEMPLOYEE = "TrainingEmployee".intern();
 		public static final String VEHICLE = "Vehicle".intern();
+		public static final String VEHICLEACCESSORYPRODUCT = "VehicleAccessoryProduct".intern();
+		public static final String VEHICLEACCESSORYSTYLEVARIANTPRODUCT = "VehicleAccessoryStyleVariantProduct".intern();
 	}
 	public static class Attributes
 	{
@@ -55,6 +58,7 @@ public class GeneratedTrainingCoreConstants
 		public static final String DEALER2DRIVER = "Dealer2Driver".intern();
 		public static final String DEALER2VEHICLE = "Dealer2Vehicle".intern();
 		public static final String DRIVER2VEHICLE = "Driver2Vehicle".intern();
+		public static final String VEHICLE2ACCESSORIES = "Vehicle2Accessories".intern();
 	}
 	
 	protected GeneratedTrainingCoreConstants()

@@ -11,6 +11,7 @@ import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
 import de.hybris.platform.variants.model.VariantProductModel;
 import de.hybris.training.core.model.ApparelProductModel;
+import de.hybris.training.core.model.VehicleModel;
 import de.hybris.training.facades.product.data.GenderData;
 
 import java.util.ArrayList;

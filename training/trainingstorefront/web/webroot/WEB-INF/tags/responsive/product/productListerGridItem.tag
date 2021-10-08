@@ -38,7 +38,24 @@
 					</c:forEach>
 				</div>
 			</c:if>
-			
+			<h4>Registration no : ${product.registrationNo}</h3>
+			<h4>Dealer Name : ${product.dealerName}</h3>
+
+			<ycommerce:testId code="product_driverName">
+                    </br>
+                    <c:choose>
+                      <c:when test="${empty product.driverName }">
+                        Driver not available
+                      </c:when>
+                      <c:otherwise>
+                              <a class="name" href="">
+                                   <c:out escapeXml="false" value="Driver Name: ${product.driverName}" />
+                              </a>
+                      </c:otherwise>
+                    </c:choose>
+             </ycommerce:testId>
+
+
 			<ycommerce:testId code="product_productPrice">
 				<div class="price"><product:productListerItemPrice product="${product}"/></div>
 			</ycommerce:testId>
