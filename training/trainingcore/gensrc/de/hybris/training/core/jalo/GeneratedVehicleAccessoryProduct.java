@@ -1,22 +1,29 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 08-Oct-2021, 10:07:38 AM                    ---
+ * --- Generated at 08-Oct-2021, 4:14:44 PM                     ---
  * ----------------------------------------------------------------
  *  
  * Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
  */
 package de.hybris.training.core.jalo;
 
+import de.hybris.platform.jalo.Item;
 import de.hybris.platform.jalo.Item.AttributeMode;
 import de.hybris.platform.jalo.JaloInvalidParameterException;
 import de.hybris.platform.jalo.SessionContext;
 import de.hybris.platform.jalo.c2l.C2LManager;
 import de.hybris.platform.jalo.c2l.Language;
 import de.hybris.platform.jalo.product.Product;
+import de.hybris.platform.jalo.type.ComposedType;
+import de.hybris.platform.jalo.type.TypeManager;
+import de.hybris.platform.util.Utilities;
 import de.hybris.training.core.constants.TrainingCoreConstants;
+import de.hybris.training.core.jalo.SupportedVehicle;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,15 +32,19 @@ import java.util.Map;
 @SuppressWarnings({"deprecation","unused","cast"})
 public abstract class GeneratedVehicleAccessoryProduct extends Product
 {
-	/** Qualifier of the <code>VehicleAccessoryProduct.accessoryName</code> attribute **/
-	public static final String ACCESSORYNAME = "accessoryName";
 	/** Qualifier of the <code>VehicleAccessoryProduct.accessoryBrandName</code> attribute **/
 	public static final String ACCESSORYBRANDNAME = "accessoryBrandName";
+	/** Qualifier of the <code>VehicleAccessoryProduct.supportedVehicles</code> attribute **/
+	public static final String SUPPORTEDVEHICLES = "supportedVehicles";
+	/** Relation ordering override parameter constants for Vehicle2Accessories from ((trainingcore))*/
+	protected static String VEHICLE2ACCESSORIES_SRC_ORDERED = "relation.Vehicle2Accessories.source.ordered";
+	protected static String VEHICLE2ACCESSORIES_TGT_ORDERED = "relation.Vehicle2Accessories.target.ordered";
+	/** Relation disable markmodifed parameter constants for Vehicle2Accessories from ((trainingcore))*/
+	protected static String VEHICLE2ACCESSORIES_MARKMODIFIED = "relation.Vehicle2Accessories.markmodified";
 	protected static final Map<String, AttributeMode> DEFAULT_INITIAL_ATTRIBUTES;
 	static
 	{
 		final Map<String, AttributeMode> tmp = new HashMap<String, AttributeMode>(Product.DEFAULT_INITIAL_ATTRIBUTES);
-		tmp.put(ACCESSORYNAME, AttributeMode.INITIAL);
 		tmp.put(ACCESSORYBRANDNAME, AttributeMode.INITIAL);
 		DEFAULT_INITIAL_ATTRIBUTES = Collections.unmodifiableMap(tmp);
 	}
@@ -128,87 +139,142 @@ public abstract class GeneratedVehicleAccessoryProduct extends Product
 	}
 	
 	/**
-	 * <i>Generated method</i> - Getter of the <code>VehicleAccessoryProduct.accessoryName</code> attribute.
-	 * @return the accessoryName - Name of the Vehicle Accessory
+	 * @deprecated since 2011, use {@link Utilities#getMarkModifiedOverride(de.hybris.platform.jalo.type.RelationType)
 	 */
-	public String getAccessoryName(final SessionContext ctx)
+	@Override
+	@Deprecated(since = "2105", forRemoval = true)
+	public boolean isMarkModifiedDisabled(final Item referencedItem)
 	{
-		if( ctx == null || ctx.getLanguage() == null )
+		ComposedType relationSecondEnd0 = TypeManager.getInstance().getComposedType("SupportedVehicle");
+		if(relationSecondEnd0.isAssignableFrom(referencedItem.getComposedType()))
 		{
-			throw new JaloInvalidParameterException("GeneratedVehicleAccessoryProduct.getAccessoryName requires a session language", 0 );
+			return Utilities.getMarkModifiedOverride(VEHICLE2ACCESSORIES_MARKMODIFIED);
 		}
-		return (String)getLocalizedProperty( ctx, ACCESSORYNAME);
+		return true;
 	}
 	
 	/**
-	 * <i>Generated method</i> - Getter of the <code>VehicleAccessoryProduct.accessoryName</code> attribute.
-	 * @return the accessoryName - Name of the Vehicle Accessory
+	 * <i>Generated method</i> - Getter of the <code>VehicleAccessoryProduct.supportedVehicles</code> attribute.
+	 * @return the supportedVehicles - Accessory Supported Vehicle
 	 */
-	public String getAccessoryName()
+	public Collection<SupportedVehicle> getSupportedVehicles(final SessionContext ctx)
 	{
-		return getAccessoryName( getSession().getSessionContext() );
+		final List<SupportedVehicle> items = getLinkedItems( 
+			ctx,
+			false,
+			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
+			"SupportedVehicle",
+			null,
+			false,
+			false
+		);
+		return items;
 	}
 	
 	/**
-	 * <i>Generated method</i> - Getter of the <code>VehicleAccessoryProduct.accessoryName</code> attribute. 
-	 * @return the localized accessoryName - Name of the Vehicle Accessory
+	 * <i>Generated method</i> - Getter of the <code>VehicleAccessoryProduct.supportedVehicles</code> attribute.
+	 * @return the supportedVehicles - Accessory Supported Vehicle
 	 */
-	public Map<Language,String> getAllAccessoryName(final SessionContext ctx)
+	public Collection<SupportedVehicle> getSupportedVehicles()
 	{
-		return (Map<Language,String>)getAllLocalizedProperties(ctx,ACCESSORYNAME,C2LManager.getInstance().getAllLanguages());
+		return getSupportedVehicles( getSession().getSessionContext() );
+	}
+	
+	public long getSupportedVehiclesCount(final SessionContext ctx)
+	{
+		return getLinkedItemsCount(
+			ctx,
+			false,
+			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
+			"SupportedVehicle",
+			null
+		);
+	}
+	
+	public long getSupportedVehiclesCount()
+	{
+		return getSupportedVehiclesCount( getSession().getSessionContext() );
 	}
 	
 	/**
-	 * <i>Generated method</i> - Getter of the <code>VehicleAccessoryProduct.accessoryName</code> attribute. 
-	 * @return the localized accessoryName - Name of the Vehicle Accessory
+	 * <i>Generated method</i> - Setter of the <code>VehicleAccessoryProduct.supportedVehicles</code> attribute. 
+	 * @param value the supportedVehicles - Accessory Supported Vehicle
 	 */
-	public Map<Language,String> getAllAccessoryName()
+	public void setSupportedVehicles(final SessionContext ctx, final Collection<SupportedVehicle> value)
 	{
-		return getAllAccessoryName( getSession().getSessionContext() );
+		setLinkedItems( 
+			ctx,
+			false,
+			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
+			null,
+			value,
+			false,
+			false,
+			Utilities.getMarkModifiedOverride(VEHICLE2ACCESSORIES_MARKMODIFIED)
+		);
 	}
 	
 	/**
-	 * <i>Generated method</i> - Setter of the <code>VehicleAccessoryProduct.accessoryName</code> attribute. 
-	 * @param value the accessoryName - Name of the Vehicle Accessory
+	 * <i>Generated method</i> - Setter of the <code>VehicleAccessoryProduct.supportedVehicles</code> attribute. 
+	 * @param value the supportedVehicles - Accessory Supported Vehicle
 	 */
-	public void setAccessoryName(final SessionContext ctx, final String value)
+	public void setSupportedVehicles(final Collection<SupportedVehicle> value)
 	{
-		if ( ctx == null) 
-		{
-			throw new JaloInvalidParameterException( "ctx is null", 0 );
-		}
-		if( ctx.getLanguage() == null )
-		{
-			throw new JaloInvalidParameterException("GeneratedVehicleAccessoryProduct.setAccessoryName requires a session language", 0 );
-		}
-		setLocalizedProperty(ctx, ACCESSORYNAME,value);
+		setSupportedVehicles( getSession().getSessionContext(), value );
 	}
 	
 	/**
-	 * <i>Generated method</i> - Setter of the <code>VehicleAccessoryProduct.accessoryName</code> attribute. 
-	 * @param value the accessoryName - Name of the Vehicle Accessory
+	 * <i>Generated method</i> - Adds <code>value</code> to supportedVehicles. 
+	 * @param value the item to add to supportedVehicles - Accessory Supported Vehicle
 	 */
-	public void setAccessoryName(final String value)
+	public void addToSupportedVehicles(final SessionContext ctx, final SupportedVehicle value)
 	{
-		setAccessoryName( getSession().getSessionContext(), value );
+		addLinkedItems( 
+			ctx,
+			false,
+			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
+			null,
+			Collections.singletonList(value),
+			false,
+			false,
+			Utilities.getMarkModifiedOverride(VEHICLE2ACCESSORIES_MARKMODIFIED)
+		);
 	}
 	
 	/**
-	 * <i>Generated method</i> - Setter of the <code>VehicleAccessoryProduct.accessoryName</code> attribute. 
-	 * @param value the accessoryName - Name of the Vehicle Accessory
+	 * <i>Generated method</i> - Adds <code>value</code> to supportedVehicles. 
+	 * @param value the item to add to supportedVehicles - Accessory Supported Vehicle
 	 */
-	public void setAllAccessoryName(final SessionContext ctx, final Map<Language,String> value)
+	public void addToSupportedVehicles(final SupportedVehicle value)
 	{
-		setAllLocalizedProperties(ctx,ACCESSORYNAME,value);
+		addToSupportedVehicles( getSession().getSessionContext(), value );
 	}
 	
 	/**
-	 * <i>Generated method</i> - Setter of the <code>VehicleAccessoryProduct.accessoryName</code> attribute. 
-	 * @param value the accessoryName - Name of the Vehicle Accessory
+	 * <i>Generated method</i> - Removes <code>value</code> from supportedVehicles. 
+	 * @param value the item to remove from supportedVehicles - Accessory Supported Vehicle
 	 */
-	public void setAllAccessoryName(final Map<Language,String> value)
+	public void removeFromSupportedVehicles(final SessionContext ctx, final SupportedVehicle value)
 	{
-		setAllAccessoryName( getSession().getSessionContext(), value );
+		removeLinkedItems( 
+			ctx,
+			false,
+			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
+			null,
+			Collections.singletonList(value),
+			false,
+			false,
+			Utilities.getMarkModifiedOverride(VEHICLE2ACCESSORIES_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from supportedVehicles. 
+	 * @param value the item to remove from supportedVehicles - Accessory Supported Vehicle
+	 */
+	public void removeFromSupportedVehicles(final SupportedVehicle value)
+	{
+		removeFromSupportedVehicles( getSession().getSessionContext(), value );
 	}
 	
 }

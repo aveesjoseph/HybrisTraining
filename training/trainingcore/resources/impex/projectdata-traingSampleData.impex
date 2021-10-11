@@ -1,68 +1,78 @@
-$productCatalog=apparelProductCatalog
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$baseProduct=baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']),version[default='Staged']))
-$approved=approvalstatus(code)[default='approved']
+$productCatalog = apparelProductCatalog
+$catalogVersion = catalogversion(catalog(id[default=$productCatalog]), version[default='Staged'])[unique=true, default=$productCatalog:Staged]
+$baseProduct = baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']), version[default='Staged']))
+$approved = approvalstatus(code)[default='approved']
 
 
-INSERT_UPDATE Driver; driverId[unique=true,allownull=false];name;experience
-                    ;1;Steve;5
-                    ;2;Tony;6
-                    ;3;Bruce;3
+INSERT_UPDATE Driver; driverId[unique = true, allownull = false]; name  ; experience
+                    ; 1                                         ; Steve ; 5
+                    ; 2                                         ; Tony  ; 6
+                    ; 3                                         ; Bruce ; 3
 
-INSERT_UPDATE Dealer; dealerId[unique=true,allownull=false];name
-                    ;101;Skyline Dealers
-                    ;102;Stark Inc.
-                    ;103;Welsh Dealers
+INSERT_UPDATE Dealer; dealerId[unique = true, allownull = false]; name
+                    ; 101                                       ; Skyline Dealers
+                    ; 102                                       ; Stark Inc.
+                    ; 103                                       ; Welsh Dealers
 
-UPDATE Driver ; driverId[unique=true,allownull=false];dealers(dealerId)
-              ;1;101
-              ;1;103
-              ;2;102
-              ;3;103
-
-
-INSERT_UPDATE Vehicle;code[unique=true];$catalogVersion;$approved;registrationNo[unique=true]
-                     ;32001;;;870001
-                     ;32002;;;770001
-                     ;32003;;;670001
-
-UPDATE Vehicle ; registrationNo[unique=true,allownull=false];name;dealers(dealerId);drivers(driverId)
-              ;870001;Nissan;101;1
-              ;770001;Toyota;102;2
-              ;670001;Hundai;103;3
+UPDATE Driver; driverId[unique = true, allownull = false]; dealers(dealerId)
+             ; 1                                         ; 101
+             ; 1                                         ; 103
+             ; 2                                         ; 102
+             ; 3                                         ; 103
 
 
+INSERT_UPDATE Vehicle; code[unique = true]; $catalogVersion; $approved; registrationNo[unique = true]
+                     ; 32001              ;                ;          ; 870001
+                     ; 32002              ;                ;          ; 770001
+                     ; 32003              ;                ;          ; 670001
+
+UPDATE Vehicle; registrationNo[unique = true, allownull = false]; name   ; dealers(dealerId); drivers(driverId)
+              ; 870001                                          ; Nissan ; 101              ; 1
+              ; 770001                                          ; Toyota ; 102              ; 2
+              ; 670001                                          ; Hundai ; 103              ; 3
 
 
-INSERT_UPDATE SupportedVehicle;code[unique=true];vehicleName;variant
-                              ;100000;Ford Figo;Petrol
-                              ;100001;Ford Figo ;Diesel
-                              ;200001;Hyundai I10;Petrol
-                              ;200002;Hyundai I10;Diesel
-                              ;300001;Maruti Swift;Petrol
-                              ;300002;Maruti Swift;Diesel
-                              ;400001;Swift Dzire;Petrol
-                              ;400002;Swift Dzire;Diesel
-                              ;500001;Polo;Petrol
-                              ;500002;Polo;Diesel
-
-INSERT_UPDATE VehicleAccessoryProduct; code[unique=true];name;accessoryName;accessoryBrandName;varianttype(code);$catalogVersion;$approved
-                                     ;100;Steering wheel Cover;Steering wheel Cover;Michelin;VehicleAccessoryStyleVariantProduct;;
-                                     ;200;Car Cover;Car Cover;Car Mate;VehicleAccessoryStyleVariantProduct;;
-                                     ;300;Foot Mat;Foot Mat;Auto Zing;VehicleAccessoryStyleVariantProduct;;
-                                     ;400;Mobile Phone holder;Mobile Phone holder;Skyvik;VehicleAccessoryStyleVariantProduct;;
 
 
-INSERT_UPDATE VehicleAccessoryStyleVariantProduct;code[unique=true];name;$catalogVersion;$baseProduct;accessoryColor;$approved
-                                                 ;101;Steering wheel Cover - Red;;100;Red;
-                                                 ;201;Car Cover - Blue;;200;Blue;
-                                                 ;301;Foot Mat - Black;;300;Black;
-                                                 ;401;Mobile Phone holder - White;;400;White;
+INSERT_UPDATE SupportedVehicle; code[unique = true]; vehicleName  ; variant
+                              ; 100000             ; Ford Figo    ; Petrol
+                              ; 100001             ; Ford Figo    ; Diesel
+                              ; 200001             ; Hyundai I10  ; Petrol
+                              ; 200002             ; Hyundai I10  ; Diesel
+                              ; 300001             ; Maruti Swift ; Petrol
+                              ; 300002             ; Maruti Swift ; Diesel
+                              ; 400001             ; Swift Dzire  ; Petrol
+                              ; 400002             ; Swift Dzire  ; Diesel
+                              ; 500001             ; Polo         ; Petrol
+                              ; 500002             ; Polo         ; Diesel
+
+INSERT_UPDATE VehicleAccessoryProduct; code[unique = true]; name                 ; accessoryBrandName; varianttype(code)                   ; $catalogVersion; $approved
+                                     ; 100                ; Steering wheel Cover ; Michelin          ; VehicleAccessoryStyleVariantProduct ;                ;
+                                     ; 200                ; Car Cover            ; Car Mate          ; VehicleAccessoryStyleVariantProduct ;                ;
+                                     ; 300                ; Foot Mat             ; Auto Zing         ; VehicleAccessoryStyleVariantProduct ;                ;
+                                     ; 400                ; Mobile Phone holder  ; Skyvik            ; VehicleAccessoryStyleVariantProduct ;                ;
 
 
-INSERT_UPDATE VehicleAccessoryStyleVariantProduct;code[unique=true];vehicles(code)
-                                          ;101;100000
-                                          ;101;100001
-                                          ;301;400001
-                                          ;201;500002
-                                          ;401;300001
+INSERT_UPDATE VehicleAccessoryStyleVariantProduct; code[unique = true]; name                 ; $catalogVersion; $baseProduct; accessoryColor; $approved
+                                                 ; 101                ; Steering wheel Cover ;                ; 100         ; Red           ;
+                                                 ; 102                ; Steering wheel Cover ;                ; 100         ; Blue          ;
+                                                 ; 201                ; Car Cover            ;                ; 200         ; Blue          ;
+                                                 ; 202                ; Car Cover            ;                ; 200         ; Grey          ;
+                                                 ; 301                ; Foot Mat             ;                ; 300         ; Black         ;
+                                                 ; 302                ; Foot Mat             ;                ; 300         ; Green         ;
+                                                 ; 401                ; Mobile Phone holder  ;                ; 400         ; White         ;
+                                                 ; 402                ; Mobile Phone holder  ;                ; 400         ; Yellow        ;
+
+
+INSERT_UPDATE VehicleAccessoryProduct; code[unique = true]; supportedVehicles(code)
+                                     ; 100                ; 100000
+                                     ; 100                ; 100001
+                                     ; 300                ; 400001
+                                     ; 200                ; 500002
+                                     ; 400                ; 300001
+
+$solrIndexedType = apparel-ukProductType
+$indexBaseSite = apparel-uk
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider; valueProviderParameters[map-delimiter = |]
+                                 ; $solrIndexedType                          ; accessoryBrandName ; text      ; TRUE                                ; TRUE                               ;                   ;
+                                 ; $solrIndexedType                          ; accessoryColor     ; text      ; TRUE                                ; TRUE                               ;                   ;

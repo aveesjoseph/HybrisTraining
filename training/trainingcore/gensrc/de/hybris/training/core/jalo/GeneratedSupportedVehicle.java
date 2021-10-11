@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 08-Oct-2021, 10:07:38 AM                    ---
+ * --- Generated at 08-Oct-2021, 4:14:44 PM                     ---
  * ----------------------------------------------------------------
  *  
  * Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
@@ -19,7 +19,7 @@ import de.hybris.platform.jalo.type.ComposedType;
 import de.hybris.platform.jalo.type.TypeManager;
 import de.hybris.platform.util.Utilities;
 import de.hybris.training.core.constants.TrainingCoreConstants;
-import de.hybris.training.core.jalo.VehicleAccessoryStyleVariantProduct;
+import de.hybris.training.core.jalo.VehicleAccessoryProduct;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -39,8 +39,8 @@ public abstract class GeneratedSupportedVehicle extends GenericItem
 	public static final String VEHICLENAME = "vehicleName";
 	/** Qualifier of the <code>SupportedVehicle.variant</code> attribute **/
 	public static final String VARIANT = "variant";
-	/** Qualifier of the <code>SupportedVehicle.vehicleAccessoryStyleVariant</code> attribute **/
-	public static final String VEHICLEACCESSORYSTYLEVARIANT = "vehicleAccessoryStyleVariant";
+	/** Qualifier of the <code>SupportedVehicle.accessory</code> attribute **/
+	public static final String ACCESSORY = "accessory";
 	/** Relation ordering override parameter constants for Vehicle2Accessories from ((trainingcore))*/
 	protected static String VEHICLE2ACCESSORIES_SRC_ORDERED = "relation.Vehicle2Accessories.source.ordered";
 	protected static String VEHICLE2ACCESSORIES_TGT_ORDERED = "relation.Vehicle2Accessories.target.ordered";
@@ -59,6 +59,130 @@ public abstract class GeneratedSupportedVehicle extends GenericItem
 	protected Map<String, AttributeMode> getDefaultAttributeModes()
 	{
 		return DEFAULT_INITIAL_ATTRIBUTES;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>SupportedVehicle.accessory</code> attribute.
+	 * @return the accessory - Vehicles
+	 */
+	public Set<VehicleAccessoryProduct> getAccessory(final SessionContext ctx)
+	{
+		final List<VehicleAccessoryProduct> items = getLinkedItems( 
+			ctx,
+			true,
+			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
+			"VehicleAccessoryProduct",
+			null,
+			false,
+			false
+		);
+		return new LinkedHashSet<VehicleAccessoryProduct>(items);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>SupportedVehicle.accessory</code> attribute.
+	 * @return the accessory - Vehicles
+	 */
+	public Set<VehicleAccessoryProduct> getAccessory()
+	{
+		return getAccessory( getSession().getSessionContext() );
+	}
+	
+	public long getAccessoryCount(final SessionContext ctx)
+	{
+		return getLinkedItemsCount(
+			ctx,
+			true,
+			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
+			"VehicleAccessoryProduct",
+			null
+		);
+	}
+	
+	public long getAccessoryCount()
+	{
+		return getAccessoryCount( getSession().getSessionContext() );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>SupportedVehicle.accessory</code> attribute. 
+	 * @param value the accessory - Vehicles
+	 */
+	public void setAccessory(final SessionContext ctx, final Set<VehicleAccessoryProduct> value)
+	{
+		setLinkedItems( 
+			ctx,
+			true,
+			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
+			null,
+			value,
+			false,
+			false,
+			Utilities.getMarkModifiedOverride(VEHICLE2ACCESSORIES_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>SupportedVehicle.accessory</code> attribute. 
+	 * @param value the accessory - Vehicles
+	 */
+	public void setAccessory(final Set<VehicleAccessoryProduct> value)
+	{
+		setAccessory( getSession().getSessionContext(), value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to accessory. 
+	 * @param value the item to add to accessory - Vehicles
+	 */
+	public void addToAccessory(final SessionContext ctx, final VehicleAccessoryProduct value)
+	{
+		addLinkedItems( 
+			ctx,
+			true,
+			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
+			null,
+			Collections.singletonList(value),
+			false,
+			false,
+			Utilities.getMarkModifiedOverride(VEHICLE2ACCESSORIES_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Adds <code>value</code> to accessory. 
+	 * @param value the item to add to accessory - Vehicles
+	 */
+	public void addToAccessory(final VehicleAccessoryProduct value)
+	{
+		addToAccessory( getSession().getSessionContext(), value );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from accessory. 
+	 * @param value the item to remove from accessory - Vehicles
+	 */
+	public void removeFromAccessory(final SessionContext ctx, final VehicleAccessoryProduct value)
+	{
+		removeLinkedItems( 
+			ctx,
+			true,
+			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
+			null,
+			Collections.singletonList(value),
+			false,
+			false,
+			Utilities.getMarkModifiedOverride(VEHICLE2ACCESSORIES_MARKMODIFIED)
+		);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Removes <code>value</code> from accessory. 
+	 * @param value the item to remove from accessory - Vehicles
+	 */
+	public void removeFromAccessory(final VehicleAccessoryProduct value)
+	{
+		removeFromAccessory( getSession().getSessionContext(), value );
 	}
 	
 	/**
@@ -141,7 +265,7 @@ public abstract class GeneratedSupportedVehicle extends GenericItem
 	@Deprecated(since = "2105", forRemoval = true)
 	public boolean isMarkModifiedDisabled(final Item referencedItem)
 	{
-		ComposedType relationSecondEnd0 = TypeManager.getInstance().getComposedType("VehicleAccessoryStyleVariantProduct");
+		ComposedType relationSecondEnd0 = TypeManager.getInstance().getComposedType("VehicleAccessoryProduct");
 		if(relationSecondEnd0.isAssignableFrom(referencedItem.getComposedType()))
 		{
 			return Utilities.getMarkModifiedOverride(VEHICLE2ACCESSORIES_MARKMODIFIED);
@@ -231,130 +355,6 @@ public abstract class GeneratedSupportedVehicle extends GenericItem
 	public void setAllVariant(final Map<Language,String> value)
 	{
 		setAllVariant( getSession().getSessionContext(), value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Getter of the <code>SupportedVehicle.vehicleAccessoryStyleVariant</code> attribute.
-	 * @return the vehicleAccessoryStyleVariant - Vehicles
-	 */
-	public Set<VehicleAccessoryStyleVariantProduct> getVehicleAccessoryStyleVariant(final SessionContext ctx)
-	{
-		final List<VehicleAccessoryStyleVariantProduct> items = getLinkedItems( 
-			ctx,
-			true,
-			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
-			"VehicleAccessoryStyleVariantProduct",
-			null,
-			false,
-			false
-		);
-		return new LinkedHashSet<VehicleAccessoryStyleVariantProduct>(items);
-	}
-	
-	/**
-	 * <i>Generated method</i> - Getter of the <code>SupportedVehicle.vehicleAccessoryStyleVariant</code> attribute.
-	 * @return the vehicleAccessoryStyleVariant - Vehicles
-	 */
-	public Set<VehicleAccessoryStyleVariantProduct> getVehicleAccessoryStyleVariant()
-	{
-		return getVehicleAccessoryStyleVariant( getSession().getSessionContext() );
-	}
-	
-	public long getVehicleAccessoryStyleVariantCount(final SessionContext ctx)
-	{
-		return getLinkedItemsCount(
-			ctx,
-			true,
-			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
-			"VehicleAccessoryStyleVariantProduct",
-			null
-		);
-	}
-	
-	public long getVehicleAccessoryStyleVariantCount()
-	{
-		return getVehicleAccessoryStyleVariantCount( getSession().getSessionContext() );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Setter of the <code>SupportedVehicle.vehicleAccessoryStyleVariant</code> attribute. 
-	 * @param value the vehicleAccessoryStyleVariant - Vehicles
-	 */
-	public void setVehicleAccessoryStyleVariant(final SessionContext ctx, final Set<VehicleAccessoryStyleVariantProduct> value)
-	{
-		setLinkedItems( 
-			ctx,
-			true,
-			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
-			null,
-			value,
-			false,
-			false,
-			Utilities.getMarkModifiedOverride(VEHICLE2ACCESSORIES_MARKMODIFIED)
-		);
-	}
-	
-	/**
-	 * <i>Generated method</i> - Setter of the <code>SupportedVehicle.vehicleAccessoryStyleVariant</code> attribute. 
-	 * @param value the vehicleAccessoryStyleVariant - Vehicles
-	 */
-	public void setVehicleAccessoryStyleVariant(final Set<VehicleAccessoryStyleVariantProduct> value)
-	{
-		setVehicleAccessoryStyleVariant( getSession().getSessionContext(), value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Adds <code>value</code> to vehicleAccessoryStyleVariant. 
-	 * @param value the item to add to vehicleAccessoryStyleVariant - Vehicles
-	 */
-	public void addToVehicleAccessoryStyleVariant(final SessionContext ctx, final VehicleAccessoryStyleVariantProduct value)
-	{
-		addLinkedItems( 
-			ctx,
-			true,
-			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
-			null,
-			Collections.singletonList(value),
-			false,
-			false,
-			Utilities.getMarkModifiedOverride(VEHICLE2ACCESSORIES_MARKMODIFIED)
-		);
-	}
-	
-	/**
-	 * <i>Generated method</i> - Adds <code>value</code> to vehicleAccessoryStyleVariant. 
-	 * @param value the item to add to vehicleAccessoryStyleVariant - Vehicles
-	 */
-	public void addToVehicleAccessoryStyleVariant(final VehicleAccessoryStyleVariantProduct value)
-	{
-		addToVehicleAccessoryStyleVariant( getSession().getSessionContext(), value );
-	}
-	
-	/**
-	 * <i>Generated method</i> - Removes <code>value</code> from vehicleAccessoryStyleVariant. 
-	 * @param value the item to remove from vehicleAccessoryStyleVariant - Vehicles
-	 */
-	public void removeFromVehicleAccessoryStyleVariant(final SessionContext ctx, final VehicleAccessoryStyleVariantProduct value)
-	{
-		removeLinkedItems( 
-			ctx,
-			true,
-			TrainingCoreConstants.Relations.VEHICLE2ACCESSORIES,
-			null,
-			Collections.singletonList(value),
-			false,
-			false,
-			Utilities.getMarkModifiedOverride(VEHICLE2ACCESSORIES_MARKMODIFIED)
-		);
-	}
-	
-	/**
-	 * <i>Generated method</i> - Removes <code>value</code> from vehicleAccessoryStyleVariant. 
-	 * @param value the item to remove from vehicleAccessoryStyleVariant - Vehicles
-	 */
-	public void removeFromVehicleAccessoryStyleVariant(final VehicleAccessoryStyleVariantProduct value)
-	{
-		removeFromVehicleAccessoryStyleVariant( getSession().getSessionContext(), value );
 	}
 	
 	/**

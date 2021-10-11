@@ -66,11 +66,11 @@
 
         <relation code="Vehicle2Accessories" autocreate="true" localized="false">
             <deployment table="Vehicle2Accessories" typecode="12361"/>
-            <sourceElement qualifier="vehicles" type="SupportedVehicle" cardinality="many" ordered="false">
+            <sourceElement qualifier="supportedVehicles" type="SupportedVehicle" cardinality="many" ordered="false">
                 <description>Accessory Supported Vehicle</description>
                 <modifiers read="true" write="true" search="true" optional="true"/>
             </sourceElement>
-            <targetElement qualifier="vehicleAccessoryStyleVariant" type="VehicleAccessoryStyleVariantProduct" cardinality="many" collectiontype="set">
+            <targetElement qualifier="accessory" type="VehicleAccessoryProduct" cardinality="many" collectiontype="set">
                 <description>Vehicles</description>
                 <modifiers read="true" write="true" search="true" optional="true"/>
             </targetElement>
@@ -235,11 +235,6 @@
                       autocreate="true" generate="true">
                 <description>Base Vehicle Accessory product extension that contains additional attributes.</description>
                 <attributes>
-                    <attribute qualifier="accessoryName" type="localized:java.lang.String" generate="true">
-                        <description>Name of the Vehicle Accessory</description>
-                        <modifiers read="true" write="true" optional="false" initial="true"/>
-                        <persistence type="property"/>
-                    </attribute>
                     <attribute qualifier="accessoryBrandName" type="localized:java.lang.String" generate="true">
                         <description>Brand name of the Vehicle Accessory</description>
                         <modifiers read="true" write="true" optional="false" initial="true"/>
