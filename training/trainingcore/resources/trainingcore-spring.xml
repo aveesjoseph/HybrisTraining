@@ -547,6 +547,11 @@
 		  parent="abstractJobPerformable">
 	</bean>
 
+	<bean id="vehicleNameValueProvider"
+		  class="de.hybris.training.core.search.solrfacetsearch.provider.impl.VehicleNameValueProvider" >
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
 	<bean id="dealerNameValueProvider"
 		  class="de.hybris.training.core.search.solrfacetsearch.provider.impl.DealerNameValueProvider" >
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
@@ -561,7 +566,17 @@
 		<property name="modelService" ref="modelService"/>
 	</bean>
 
-
 	<bean id="trainingStoreService" class = "de.hybris.training.core.services.TrainingStoreServices">
 	</bean>
+
+	<!-- Vehicle Accessory Store Beans -->
+
+	<bean id="vehicleAccessoryStoreDao" class="de.hybris.training.core.dao.impl.VehicleAccessoryStoreDaoImpl">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<bean id="vehicleAccessoryStoreService" class = "de.hybris.training.core.services.VehicleAccessoryStoreService">
+	</bean>
+
 </beans>

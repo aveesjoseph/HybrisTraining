@@ -76,12 +76,6 @@
 		<property name="genderConverter" ref="genderConverter"/>
 	</bean>
 
-	<alias name="vehicleProductPopulator" alias="commerceSearchResultProductPopulator"/>
-	<bean id="vehicleProductPopulator"
-		  class="de.hybris.training.facades.populators.VehicleProductPopulator"
-		  parent="variantCommerceSearchResultProductPopulator">
-	</bean>
-
 	<!-- Add the apparelProductPopulator to the productConverter -->
 	<bean parent="modifyPopulatorList">
 		<property name="list" ref="productConverter"/>
@@ -218,6 +212,14 @@
 
 	<bean id="genderData" class="de.hybris.training.facades.product.data.GenderData" scope="prototype"/>
 
+<!--Vehicle Rental Service Beans -->
+
+	<alias name="vehicleProductPopulator" alias="commerceSearchResultProductPopulator"/>
+	<bean id="vehicleProductPopulator"
+		  class="de.hybris.training.facades.populators.VehicleProductPopulator"
+		  parent="variantCommerceSearchResultProductPopulator">
+	</bean>
+
 	<bean id="trainingStoreFacade" class="de.hybris.training.facades.trainingStore.impl.TrainingStoreFacadeImpl">
 		<property name="trainingStoreService" ref="trainingStoreService"/>
 		<property name="driverConverter" ref="driverConverter"/>
@@ -247,6 +249,44 @@
 	</bean>
 
 	<bean id="dealerProductPopulator" class="de.hybris.training.facades.populators.DealerProductPopulator">
+	</bean>
+
+	<!--Vehicle Accessory Store Beans -->
+
+	<bean id="vehicleAccessoryStoreFacade" class="de.hybris.training.facades.vehicleAccessoryStore.impl.VehicleAccessoryStoreFacadeImpl">
+		<property name="vehicleAccessoryStoreService" ref = "vehicleAccessoryStoreService"/>
+		<property name="supportedVehicleConverter" ref="supportedVehicleConverter"/>
+		<property name="vehicleAccessoryProductConverter" ref="vehicleAccessoryProductConverter"/>
+	</bean>
+
+	<bean id="supportedVehicleConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.training.facades.product.data.SupportedVehicleData"/>
+		<property name="populators">
+			<list>
+				<ref bean="supportedVehicleDataPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="supportedVehicleDataPopulator" class="de.hybris.training.facades.populators.SupportedVehicleDataPopulator">
+	</bean>
+
+	<bean id="vehicleAccessoryProductConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.training.facades.product.data.VehicleAccessoryProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="vehicleAccessoryDataPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="vehicleAccessoryDataPopulator" class="de.hybris.training.facades.populators.VehicleAccessoryDataPopulator">
+	</bean>
+
+	<alias name="vehicleAccessoryProductPopulator" alias="commerceSearchResultProductPopulator"/>
+	<bean id="vehicleAccessoryProductPopulator"
+		  class="de.hybris.training.facades.populators.VehicleAccessoryProductPopulator"
+		  parent="variantCommerceSearchResultProductPopulator">
 	</bean>
 
 </beans>

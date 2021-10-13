@@ -1636,4 +1636,54 @@
         </property>
     </bean>
 
+    <!--Vehicle Accessory Store Beans -->
+
+    <bean parent="fieldSetLevelMapping" id="vehicleAccessorySupportedVehicleDataWSDTOFieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.commercewebservicescommons.dto.trainingStore.SupportedVehicleWSDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="vehicleName"/>
+                <entry key="DEFAULT" value="code,vehicleName"/>
+                <entry key="FULL" value="code,vehicleName,variant"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean parent="fieldSetLevelMapping" id="vehicleAccessorySupportedVehicleDataListWSDTOFieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.commercewebservicescommons.dto.trainingStore.SupportedVehicleDataListWSDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="vehicles(BASIC)"/>
+                <entry key="DEFAULT" value="vehicles(DEFAULT)"/>
+                <entry key="FULL" value="vehicles(FULL)"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean parent="fieldSetLevelMapping" id="vehicleAccessoryDataWSDTOFieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.commercewebservicescommons.dto.trainingStore.VehicleAccessoryProductWSDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="name"/>
+                <entry key="DEFAULT" value="code,name"/>
+                <entry key="FULL" value="code,name,accessoryBrandName"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean parent="fieldSetLevelMapping" id="vehicleAccessoryDataListWSDTOFieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.commercewebservicescommons.dto.trainingStore.VehicleAccessoryProductDataListWSDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="accessories(BASIC)"/>
+                <entry key="DEFAULT" value="accessories(DEFAULT)"/>
+                <entry key="FULL" value="accessories(FULL)"/>
+            </map>
+        </property>
+    </bean>
+
 </beans>

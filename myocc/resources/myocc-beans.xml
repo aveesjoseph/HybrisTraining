@@ -207,4 +207,39 @@
 				  type="java.util.List&lt;de.hybris.training.facades.product.data.DealerData>"/>
 	</bean>
 
+	<!--Vehicle Accessory Beans -->
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.trainingStore.SupportedVehicleWSDTO">
+		<property name="code" type="int"/>
+		<property name="vehicleName" type="String"/>
+		<property name="variant" type="String"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.trainingStore.SupportedVehicleDataListWSDTO">
+		<property name="vehicles"
+				  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.trainingStore.SupportedVehicleWSDTO>"/>
+	</bean>
+
+	<bean class="de.hybris.training.queues.data.SupportedVehicleDataList">
+		<property name="vehicles"
+				  type="java.util.List&lt;de.hybris.training.facades.product.data.SupportedVehicleData>"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.trainingStore.VehicleAccessoryProductWSDTO">
+		<property name="code" type="int"/>
+		<property name="name" type="String"/>
+		<property name="accessoryBrandName" type="String"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.trainingStore.VehicleAccessoryProductDataListWSDTO">
+		<property name="accessories"
+				  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.trainingStore.VehicleAccessoryProductWSDTO>"/>
+	</bean>
+
+	<bean class="de.hybris.training.queues.data.VehicleAccessoryProductDataList">
+		<property name="accessories"
+				  type="java.util.List&lt;de.hybris.training.facades.product.data.VehicleAccessoryProductData>"/>
+	</bean>
+
+
 </beans>

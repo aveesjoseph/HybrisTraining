@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = "/trainingStore/")
 @Api(tags = "Training Store")
 public class TrainingStoreController extends BaseController {
 

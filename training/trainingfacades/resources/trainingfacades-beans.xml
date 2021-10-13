@@ -9,6 +9,8 @@
 		<property name="registrationNo" type="int"/>
 		<property name="dealerName" type="String"/>
 		<property name="driverName" type="String"/>
+		<property name="supportedVehicleName" type="String"/>
+		<property name="accessoryBrandName" type="String"/>
 	</bean>
 
 	<bean class="de.hybris.training.facades.product.data.GenderData">
@@ -26,4 +28,17 @@
 		<property name="dealerId" type="int"/>
 		<property name="name" type="String"/>
 	</bean>
+
+	<bean class="de.hybris.training.facades.product.data.SupportedVehicleData">
+		<property name="code" type="int"/>
+		<property name="vehicleName" type="String"/>
+		<property name="variant" type="String"/>
+	</bean>
+
+	<bean class="de.hybris.training.facades.product.data.VehicleAccessoryProductData">
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+		<property name="accessoryBrandName" type="String"/>
+	</bean>
+
 </beans>
