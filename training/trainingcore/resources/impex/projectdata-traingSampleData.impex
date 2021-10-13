@@ -17,21 +17,21 @@ INSERT_UPDATE SupportedVehicle; code[unique = true]; vehicleName  ; variant
                               ; 500002             ; Polo         ; Diesel
 
 INSERT_UPDATE VehicleAccessoryProduct; code[unique = true]; name                 ; accessoryBrandName; varianttype(code)                   ; $catalogVersion; $approved
-                                     ; 100                ; Steering wheel Cover ; Michelin          ; VehicleAccessoryStyleVariantProduct ;                ;
-                                     ; 200                ; Car Cover            ; Car Mate          ; VehicleAccessoryStyleVariantProduct ;                ;
-                                     ; 300                ; Foot Mat             ; Auto Zing         ; VehicleAccessoryStyleVariantProduct ;                ;
-                                     ; 400                ; Mobile Phone holder  ; Skyvik            ; VehicleAccessoryStyleVariantProduct ;                ;
+                                     ; 400100                ; Steering wheel Cover ; Michelin          ; VehicleAccessoryStyleVariantProduct ;                ;
+                                     ; 400200                ; Car Cover            ; Car Mate          ; VehicleAccessoryStyleVariantProduct ;                ;
+                                     ; 400300                ; Foot Mat             ; Auto Zing         ; VehicleAccessoryStyleVariantProduct ;                ;
+                                     ; 400400                ; Mobile Phone holder  ; Skyvik            ; VehicleAccessoryStyleVariantProduct ;                ;
 
 
 INSERT_UPDATE VehicleAccessoryStyleVariantProduct; code[unique = true]; name                 ; $catalogVersion; $baseProduct; accessoryColor; $approved
-                                                 ; 101                ; Steering wheel Cover ;                ; 100         ; Red           ;
-                                                 ; 102                ; Steering wheel Cover ;                ; 100         ; Blue          ;
-                                                 ; 201                ; Car Cover            ;                ; 200         ; Blue          ;
-                                                 ; 202                ; Car Cover            ;                ; 200         ; Grey          ;
-                                                 ; 301                ; Foot Mat             ;                ; 300         ; Black         ;
-                                                 ; 302                ; Foot Mat             ;                ; 300         ; Green         ;
-                                                 ; 401                ; Mobile Phone holder  ;                ; 400         ; White         ;
-                                                 ; 402                ; Mobile Phone holder  ;                ; 400         ; Yellow        ;
+                                                 ; 500101                ; Steering wheel Cover ;                ; 400100         ; Red           ;
+                                                 ; 500102                ; Steering wheel Cover ;                ; 400100         ; Blue          ;
+                                                 ; 500201                ; Car Cover            ;                ; 400200         ; Blue          ;
+                                                 ; 500202                ; Car Cover            ;                ; 400200         ; Grey          ;
+                                                 ; 500301                ; Foot Mat             ;                ; 400300         ; Black         ;
+                                                 ; 500302                ; Foot Mat             ;                ; 400300         ; Green         ;
+                                                 ; 500401                ; Mobile Phone holder  ;                ; 400400         ; White         ;
+                                                 ; 500402                ; Mobile Phone holder  ;                ; 400400         ; Yellow        ;
 
 
 INSERT_UPDATE VehicleAccessoryProduct; code[unique = true]; supportedVehicles(code)
