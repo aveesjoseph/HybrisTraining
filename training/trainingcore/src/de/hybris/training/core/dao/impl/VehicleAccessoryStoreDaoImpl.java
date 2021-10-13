@@ -5,7 +5,6 @@ import de.hybris.platform.servicelayer.search.SearchResult;
 import de.hybris.training.core.dao.VehicleAccessoryStoreDao;
 import de.hybris.training.core.model.SupportedVehicleModel;
 import de.hybris.training.core.model.VehicleAccessoryProductModel;
-import de.hybris.training.core.model.VehicleAccessoryStyleVariantProductModel;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +14,11 @@ public class VehicleAccessoryStoreDaoImpl extends AbstractItemDao
     private static final String getAllSupportedVehiclesQuery =
             "SELECT {" + SupportedVehicleModel.PK + "} FROM{" + SupportedVehicleModel._TYPECODE + "}";
     private static final String getAllAccessoryProducts =
-            "SELECT {" + VehicleAccessoryProductModel.PK + "} FROM{" + VehicleAccessoryProductModel._TYPECODE + "}";
+            "SELECT {"
+                    + VehicleAccessoryProductModel.PK
+                    + "} FROM{"
+                    + VehicleAccessoryProductModel._TYPECODE
+                    + "}";
 
     @Override
     public List<SupportedVehicleModel> getAllSupportedVehicles() {

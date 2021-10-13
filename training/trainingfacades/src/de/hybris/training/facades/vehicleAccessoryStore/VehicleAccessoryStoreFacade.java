@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface VehicleAccessoryStoreFacade {
     public List<SupportedVehicleData> getAllSupportedVehicles();
+
     public List<VehicleAccessoryProductData> getAllAccessoryProducts();
 }

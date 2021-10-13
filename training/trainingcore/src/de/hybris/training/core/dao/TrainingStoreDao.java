@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface TrainingStoreDao {
     List<DriverModel> getAllDrivers();
+
     List<DealerModel> getAllDealers();
 }
